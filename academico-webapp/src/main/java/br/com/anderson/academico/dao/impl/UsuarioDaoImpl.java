@@ -3,6 +3,7 @@ package br.com.anderson.academico.dao.impl;
 import java.util.List;
 
 import javax.persistence.EntityManager;
+import javax.persistence.NoResultException;
 import javax.persistence.TypedQuery;
 
 import br.com.anderson.academico.dao.UsuarioDao;
@@ -75,4 +76,20 @@ public class UsuarioDaoImpl implements UsuarioDao {
 		manager.close();
 		return usuarios;
 	}
+	
+	public Usuario autenticar(String login, String senha){
+		TypedQuery<Usuario> query = manager.createQuery("from Usuario where login = :login and senha = :senha", Usuario.class);
+		query.setParameter("login", login);
+		query.setParameter("senha", senha);
+		
+		try {
+			Usuario usuario = query.getSingleResult();
+			return usuario;
+		} catch (NoResultException e) {
+			return null;
+		} finally {
+			manager.close();
+		}
+	}
+	
 }
