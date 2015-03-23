@@ -24,8 +24,8 @@ public class ProfessorDaoImpl implements ProfessorDao {
 			manager.persist(objeto);
 			manager.getTransaction().commit();
 		} catch (Exception e) {
-			manager.getTransaction().rollback();
 			e.printStackTrace();
+			manager.getTransaction().rollback();
 		} finally {
 			manager.close();
 		}
@@ -38,8 +38,8 @@ public class ProfessorDaoImpl implements ProfessorDao {
 			manager.merge(objeto);
 			manager.getTransaction().commit();
 		} catch (Exception e) {
-			manager.getTransaction().rollback();
 			e.printStackTrace();
+			manager.getTransaction().rollback();
 		} finally {
 			manager.close();
 		}
@@ -53,8 +53,8 @@ public class ProfessorDaoImpl implements ProfessorDao {
 			manager.remove(objeto);
 			manager.getTransaction().commit();
 		} catch (Exception e) {
-			manager.getTransaction().rollback();
 			e.printStackTrace();
+			manager.getTransaction().rollback();
 		} finally {
 			manager.close();
 		}

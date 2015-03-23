@@ -6,6 +6,8 @@ import javax.faces.bean.RequestScoped;
 import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpSession;
 
+import org.hibernate.validator.constraints.NotEmpty;
+
 import br.com.anderson.academico.dao.impl.UsuarioDaoImpl;
 import br.com.anderson.academico.modelo.Usuario;
 
@@ -13,7 +15,9 @@ import br.com.anderson.academico.modelo.Usuario;
 @RequestScoped
 public class LoginController {
 
+	@NotEmpty
 	private String login;
+	@NotEmpty
 	private String senha;
 	private Usuario usuario;
 
@@ -24,7 +28,7 @@ public class LoginController {
 		usuario = dao.autenticar(login, senha);
 		
 		if (usuario == null) {
-			context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, null, "Login ou senha inválidos!"));
+			context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Login ou Senha inválidos!", null));
 			return "/login";
 		} else {
 			HttpSession session = (HttpSession) context.getExternalContext().getSession(true);

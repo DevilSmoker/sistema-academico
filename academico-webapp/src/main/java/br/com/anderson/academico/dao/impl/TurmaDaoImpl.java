@@ -24,8 +24,8 @@ public class TurmaDaoImpl implements TurmaDao {
 			manager.persist(objeto);
 			manager.getTransaction().commit();
 		} catch (Exception e) {
-			manager.getTransaction().rollback();
 			e.printStackTrace();
+			manager.getTransaction().rollback();
 		} finally {
 			manager.close();
 		}
@@ -38,8 +38,8 @@ public class TurmaDaoImpl implements TurmaDao {
 			manager.merge(objeto);
 			manager.getTransaction().commit();
 		} catch (Exception e) {
-			manager.getTransaction().rollback();
 			e.printStackTrace();
+			manager.getTransaction().rollback();
 		} finally {
 			manager.close();
 		}
@@ -53,8 +53,8 @@ public class TurmaDaoImpl implements TurmaDao {
 			manager.remove(objeto);
 			manager.getTransaction().commit();
 		} catch (Exception e) {
-			manager.getTransaction().rollback();
 			e.printStackTrace();
+			manager.getTransaction().rollback();
 		} finally {
 			manager.close();
 		}

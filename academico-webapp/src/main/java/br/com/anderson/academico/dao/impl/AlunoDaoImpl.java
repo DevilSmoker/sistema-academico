@@ -23,9 +23,9 @@ public class AlunoDaoImpl implements AlunoDao {
 			manager.getTransaction().begin();
 			manager.persist(objeto);
 			manager.getTransaction().commit();
-		} catch (Exception e) {
-			manager.getTransaction().rollback();
+		} catch (NullPointerException e) {
 			e.printStackTrace();
+			manager.getTransaction().rollback();
 		} finally {
 			manager.close();
 		}
@@ -38,8 +38,8 @@ public class AlunoDaoImpl implements AlunoDao {
 			manager.merge(objeto);
 			manager.getTransaction().commit();
 		} catch (Exception e) {
-			manager.getTransaction().rollback();
 			e.printStackTrace();
+			manager.getTransaction().rollback();
 		} finally {
 			manager.close();
 		}
@@ -53,8 +53,8 @@ public class AlunoDaoImpl implements AlunoDao {
 			manager.remove(objeto);
 			manager.getTransaction().commit();
 		} catch (Exception e) {
-			manager.getTransaction().rollback();
 			e.printStackTrace();
+			manager.getTransaction().rollback();
 		} finally {
 			manager.close();
 		}

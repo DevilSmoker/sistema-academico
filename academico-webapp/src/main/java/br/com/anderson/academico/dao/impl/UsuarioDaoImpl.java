@@ -25,8 +25,8 @@ public class UsuarioDaoImpl implements UsuarioDao {
 			manager.persist(objeto);
 			manager.getTransaction().commit();
 		} catch (Exception e) {
-			manager.getTransaction().rollback();
 			e.printStackTrace();
+			manager.getTransaction().rollback();
 		} finally {
 			manager.close();
 		}
@@ -39,8 +39,8 @@ public class UsuarioDaoImpl implements UsuarioDao {
 			manager.merge(objeto);
 			manager.getTransaction().commit();
 		} catch (Exception e) {
-			manager.getTransaction().rollback();
 			e.printStackTrace();
+			manager.getTransaction().rollback();
 		} finally {
 			manager.close();
 		}
@@ -54,8 +54,8 @@ public class UsuarioDaoImpl implements UsuarioDao {
 			manager.remove(objeto);
 			manager.getTransaction().commit();
 		} catch (Exception e) {
-			manager.getTransaction().rollback();
 			e.printStackTrace();
+			manager.getTransaction().rollback();
 		} finally {
 			manager.close();
 		}
