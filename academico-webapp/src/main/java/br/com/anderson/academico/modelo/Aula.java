@@ -16,7 +16,7 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 @Entity
-public class ProfessorTurma implements Serializable {
+public class Aula implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
@@ -40,7 +40,7 @@ public class ProfessorTurma implements Serializable {
 	@JoinColumn(name = "idProfessor")
 	private Professor professor = new Professor();
 
-	public ProfessorTurma() {
+	public Aula() {
 	}
 
 	public Long getId() {
@@ -99,7 +99,7 @@ public class ProfessorTurma implements Serializable {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		ProfessorTurma other = (ProfessorTurma) obj;
+		Aula other = (Aula) obj;
 		if (id == null) {
 			if (other.id != null)
 				return false;

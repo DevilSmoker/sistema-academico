@@ -34,7 +34,7 @@ public class Professor extends Pessoa {
 	private Disciplina disciplina = new Disciplina();
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "professor", cascade = CascadeType.ALL)
-	private List<ProfessorTurma> professorTurmas = new ArrayList<ProfessorTurma>();
+	private List<Aula> aulas = new ArrayList<Aula>();
 
 	public Professor() {
 		super();
@@ -83,12 +83,12 @@ public class Professor extends Pessoa {
 		this.disciplina = disciplina;
 	}
 
-	public List<ProfessorTurma> getProfessorTurmas() {
-		return professorTurmas;
+	public List<Aula> getAulas() {
+		return aulas;
 	}
 
-	public void setProfessorTurmas(List<ProfessorTurma> professorTurmas) {
-		this.professorTurmas = professorTurmas;
+	public void setAulas(List<Aula> aulas) {
+		this.aulas = aulas;
 	}
 
 	@Override

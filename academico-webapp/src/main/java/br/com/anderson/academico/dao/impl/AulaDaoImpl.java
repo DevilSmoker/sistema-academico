@@ -5,20 +5,20 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
 
-import br.com.anderson.academico.dao.ProfessorTurmaDao;
-import br.com.anderson.academico.modelo.ProfessorTurma;
+import br.com.anderson.academico.dao.AulaDao;
+import br.com.anderson.academico.modelo.Aula;
 import br.com.anderson.academico.util.JpaUtil;
 
-public class ProfessorTurmaDaoImpl implements ProfessorTurmaDao {
+public class AulaDaoImpl implements AulaDao {
 
 	private EntityManager manager;
 
-	public ProfessorTurmaDaoImpl() {
+	public AulaDaoImpl() {
 		this.manager = JpaUtil.getEntityManager();
 	}
 
 	@Override
-	public void save(ProfessorTurma objeto) {
+	public void save(Aula objeto) {
 		try {
 			manager.getTransaction().begin();
 			manager.persist(objeto);
@@ -32,7 +32,7 @@ public class ProfessorTurmaDaoImpl implements ProfessorTurmaDao {
 	}
 
 	@Override
-	public void update(ProfessorTurma objeto) {
+	public void update(Aula objeto) {
 		try {
 			manager.getTransaction().begin();
 			manager.merge(objeto);
@@ -46,7 +46,7 @@ public class ProfessorTurmaDaoImpl implements ProfessorTurmaDao {
 	}
 
 	@Override
-	public void delete(ProfessorTurma objeto) {
+	public void delete(Aula objeto) {
 		try {
 			manager.getTransaction().begin();
 			objeto = manager.merge(objeto);
@@ -62,16 +62,16 @@ public class ProfessorTurmaDaoImpl implements ProfessorTurmaDao {
 	}
 
 	@Override
-	public ProfessorTurma getById(Long id) {
-		ProfessorTurma professorTurma = manager.find(ProfessorTurma.class, id);
+	public Aula getById(Long id) {
+		Aula professorTurma = manager.find(Aula.class, id);
 		manager.close();
 		return professorTurma;
 	}
 
 	@Override
-	public List<ProfessorTurma> list() {
-		TypedQuery<ProfessorTurma> query = manager.createQuery("from ProfessorTurma", ProfessorTurma.class);
-		List<ProfessorTurma> professorTurmas = query.getResultList();
+	public List<Aula> list() {
+		TypedQuery<Aula> query = manager.createQuery("from ProfessorTurma", Aula.class);
+		List<Aula> professorTurmas = query.getResultList();
 		manager.close();
 		return professorTurmas;
 	}
