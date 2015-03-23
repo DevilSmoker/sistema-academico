@@ -2,7 +2,7 @@ package br.com.anderson.academico.controller;
 
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.RequestScoped;
+import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpSession;
 
@@ -12,7 +12,7 @@ import br.com.anderson.academico.dao.impl.UsuarioDaoImpl;
 import br.com.anderson.academico.modelo.Usuario;
 
 @ManagedBean
-@RequestScoped
+@SessionScoped
 public class LoginController {
 
 	@NotEmpty

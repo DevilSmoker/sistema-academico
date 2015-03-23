@@ -16,7 +16,7 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 @Entity
-public class TurmaAula implements Serializable {
+public class ProfessorTurma implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
@@ -32,15 +32,15 @@ public class TurmaAula implements Serializable {
 	@Column(nullable = false)
 	private Calendar horario;
 
-	@ManyToOne(fetch=FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "idTurma")
 	private Turma turma = new Turma();
 
-	@ManyToOne(fetch=FetchType.LAZY)
-	@JoinColumn(name = "idAula")
-	private Aula aula = new Aula();
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "idProfessor")
+	private Professor professor = new Professor();
 
-	public TurmaAula() {
+	public ProfessorTurma() {
 	}
 
 	public Long getId() {
@@ -75,12 +75,12 @@ public class TurmaAula implements Serializable {
 		this.turma = turma;
 	}
 
-	public Aula getAula() {
-		return aula;
+	public Professor getProfessor() {
+		return professor;
 	}
 
-	public void setAula(Aula aula) {
-		this.aula = aula;
+	public void setProfessor(Professor professor) {
+		this.professor = professor;
 	}
 
 	@Override
@@ -99,7 +99,7 @@ public class TurmaAula implements Serializable {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		TurmaAula other = (TurmaAula) obj;
+		ProfessorTurma other = (ProfessorTurma) obj;
 		if (id == null) {
 			if (other.id != null)
 				return false;

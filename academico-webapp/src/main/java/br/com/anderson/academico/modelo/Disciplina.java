@@ -20,12 +20,16 @@ public class Disciplina implements Serializable {
 	@GeneratedValue
 	private Long id;
 	private String nome;
-	private String descricao;
 
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "disciplina", cascade=CascadeType.ALL)
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "disciplina", cascade = CascadeType.ALL)
 	private List<Professor> professores = new ArrayList<Professor>();
 
 	public Disciplina() {
+	}
+
+	public Disciplina(String nome) {
+		super();
+		this.nome = nome;
 	}
 
 	public Long getId() {
@@ -42,14 +46,6 @@ public class Disciplina implements Serializable {
 
 	public void setNome(String nome) {
 		this.nome = nome;
-	}
-
-	public String getDescricao() {
-		return descricao;
-	}
-
-	public void setDescricao(String descricao) {
-		this.descricao = descricao;
 	}
 
 	public List<Professor> getProfessores() {

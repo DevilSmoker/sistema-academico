@@ -13,7 +13,7 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 @MappedSuperclass
-@Inheritance(strategy=InheritanceType.TABLE_PER_CLASS)
+@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 public abstract class Pessoa implements Serializable {
 
 	private static final long serialVersionUID = 1L;
@@ -54,6 +54,22 @@ public abstract class Pessoa implements Serializable {
 	private Calendar dataNascimento;
 
 	public Pessoa() {
+	}
+
+	public Pessoa(String nome, String email, String telefone, String cpf,
+			String sexo, String endereco, String cidade, String estado,
+			String nacionalidade, Calendar dataNascimento) {
+		super();
+		this.nome = nome;
+		this.email = email;
+		this.telefone = telefone;
+		this.cpf = cpf;
+		this.sexo = sexo;
+		this.endereco = endereco;
+		this.cidade = cidade;
+		this.estado = estado;
+		this.nacionalidade = nacionalidade;
+		this.dataNascimento = dataNascimento;
 	}
 
 	public Long getId() {

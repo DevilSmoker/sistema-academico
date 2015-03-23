@@ -25,10 +25,15 @@ public class Turma implements Serializable {
 	private List<Aluno> alunos = new ArrayList<Aluno>();
 
 	@OneToMany(mappedBy = "turma", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-	private List<TurmaAula> turmaAulas = new ArrayList<TurmaAula>();
+	private List<ProfessorTurma> professorTurma = new ArrayList<ProfessorTurma>();
 
 	public Turma() {
 
+	}
+
+	public Turma(String descricao) {
+		super();
+		this.descricao = descricao;
 	}
 
 	public Long getId() {
@@ -55,12 +60,12 @@ public class Turma implements Serializable {
 		this.alunos = alunos;
 	}
 
-	public List<TurmaAula> getTurmaAulas() {
-		return turmaAulas;
+	public List<ProfessorTurma> getProfessorTurma() {
+		return professorTurma;
 	}
 
-	public void setTurmaAulas(List<TurmaAula> turmaAulas) {
-		this.turmaAulas = turmaAulas;
+	public void setProfessorTurma(List<ProfessorTurma> professorTurma) {
+		this.professorTurma = professorTurma;
 	}
 
 	@Override

@@ -5,20 +5,20 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
 
-import br.com.anderson.academico.dao.AulaDao;
-import br.com.anderson.academico.modelo.Aula;
+import br.com.anderson.academico.dao.ProfessorTurmaDao;
+import br.com.anderson.academico.modelo.ProfessorTurma;
 import br.com.anderson.academico.util.JpaUtil;
 
-public class AulaDaoImpl implements AulaDao {
-	
+public class ProfessorTurmaDaoImpl implements ProfessorTurmaDao {
+
 	private EntityManager manager;
 
-	public AulaDaoImpl() {
+	public ProfessorTurmaDaoImpl() {
 		this.manager = JpaUtil.getEntityManager();
 	}
 
 	@Override
-	public void save(Aula objeto) {
+	public void save(ProfessorTurma objeto) {
 		try {
 			manager.getTransaction().begin();
 			manager.persist(objeto);
@@ -32,7 +32,7 @@ public class AulaDaoImpl implements AulaDao {
 	}
 
 	@Override
-	public void update(Aula objeto) {
+	public void update(ProfessorTurma objeto) {
 		try {
 			manager.getTransaction().begin();
 			manager.merge(objeto);
@@ -46,7 +46,7 @@ public class AulaDaoImpl implements AulaDao {
 	}
 
 	@Override
-	public void delete(Aula objeto) {
+	public void delete(ProfessorTurma objeto) {
 		try {
 			manager.getTransaction().begin();
 			objeto = manager.merge(objeto);
@@ -62,17 +62,18 @@ public class AulaDaoImpl implements AulaDao {
 	}
 
 	@Override
-	public Aula getById(Long id) {
-		Aula aula = manager.find(Aula.class, id);
+	public ProfessorTurma getById(Long id) {
+		ProfessorTurma professorTurma = manager.find(ProfessorTurma.class, id);
 		manager.close();
-		return aula;
+		return professorTurma;
 	}
 
 	@Override
-	public List<Aula> list() {
-		TypedQuery<Aula> query = manager.createQuery("from Aula", Aula.class);
-		List<Aula> aulas = query.getResultList();
+	public List<ProfessorTurma> list() {
+		TypedQuery<ProfessorTurma> query = manager.createQuery("from ProfessorTurma", ProfessorTurma.class);
+		List<ProfessorTurma> professorTurmas = query.getResultList();
 		manager.close();
-		return aulas;
+		return professorTurmas;
 	}
+	
 }
