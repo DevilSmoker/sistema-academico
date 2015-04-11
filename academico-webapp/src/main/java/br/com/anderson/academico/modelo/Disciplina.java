@@ -11,6 +11,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
+import org.hibernate.validator.constraints.NotEmpty;
+
 @Entity
 public class Disciplina implements Serializable {
 
@@ -19,6 +21,8 @@ public class Disciplina implements Serializable {
 	@Id
 	@GeneratedValue
 	private Long id;
+	
+	@NotEmpty
 	private String nome;
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "disciplina", cascade = CascadeType.ALL)

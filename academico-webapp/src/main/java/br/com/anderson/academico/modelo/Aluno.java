@@ -9,19 +9,27 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Past;
+
+import org.hibernate.validator.constraints.NotEmpty;
 
 @Entity
 public class Aluno extends Pessoa {
 
 	private static final long serialVersionUID = 1L;
 
+	@NotEmpty
 	@Column(length = 12, nullable = false, unique = true)
 	private String matricula;
 
+	@NotNull
+	@Past
 	@Temporal(TemporalType.DATE)
 	@Column(nullable = false)
 	private Calendar dataMatricula;
 
+	@NotNull
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "idTurma")
 	private Turma turma = new Turma();

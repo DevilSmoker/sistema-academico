@@ -11,6 +11,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
+import org.hibernate.validator.constraints.NotEmpty;
+
 @Entity
 public class Turma implements Serializable {
 
@@ -19,7 +21,11 @@ public class Turma implements Serializable {
 	@Id
 	@GeneratedValue
 	private Long id;
+	
+	@NotEmpty
 	private String nome;
+	
+	@NotEmpty
 	private String descricao;
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "turma", cascade = CascadeType.ALL)

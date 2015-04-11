@@ -7,6 +7,9 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
+import org.hibernate.validator.constraints.Email;
+import org.hibernate.validator.constraints.NotEmpty;
+
 @Entity
 public class Usuario implements Serializable{
 
@@ -17,15 +20,20 @@ public class Usuario implements Serializable{
 	@GeneratedValue
 	private Long id;
 
+	@NotEmpty
 	@Column(length = 12, nullable = false, unique = true)
 	private String login;
 
+	@NotEmpty
 	@Column(length = 16, nullable = false)
 	private String senha;
 
+	@NotEmpty
 	@Column(length = 100, nullable = false)
 	private String nome;
 
+	@NotEmpty
+	@Email
 	@Column(length = 60, nullable = false)
 	private String email;
 

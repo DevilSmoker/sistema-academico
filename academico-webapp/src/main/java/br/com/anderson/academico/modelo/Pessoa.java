@@ -11,6 +11,12 @@ import javax.persistence.InheritanceType;
 import javax.persistence.MappedSuperclass;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Past;
+
+import org.hibernate.validator.constraints.Email;
+import org.hibernate.validator.constraints.NotEmpty;
+import org.hibernate.validator.constraints.br.CPF;
 
 @MappedSuperclass
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
@@ -22,27 +28,38 @@ public abstract class Pessoa implements Serializable {
 	@GeneratedValue
 	private Long id;
 
+	@NotEmpty
 	@Column(length = 100, nullable = false)
 	private String nome;
 
+	@NotEmpty
+	@Email
 	@Column(length = 60, nullable = false, unique = true)
 	private String email;
 
+	@NotEmpty
+	@CPF
 	@Column(length = 11, nullable = false, unique = true)
 	private String cpf;
 
+	@NotEmpty
 	@Column(length = 10, nullable = false)
 	private String sexo;
 
+	@NotEmpty
 	@Column(nullable = false)
 	private String endereco;
 
+	@NotEmpty
 	@Column(nullable = false)
 	private String cidade;
 
+	@NotEmpty
 	@Column(nullable = false)
 	private String estado;
 
+	@NotNull
+	@Past
 	@Temporal(TemporalType.DATE)
 	@Column(nullable = false)
 	private Calendar dataNascimento;

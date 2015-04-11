@@ -13,15 +13,20 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.validation.constraints.NotNull;
+
+import org.hibernate.validator.constraints.NotEmpty;
 
 @Entity
 public class Professor extends Pessoa {
 
 	private static final long serialVersionUID = 1L;
 
+	@NotEmpty
 	@Column(length = 12, nullable = false, unique = true)
 	private String registro;
 
+	@NotNull
 	@Temporal(TemporalType.DATE)
 	@Column(nullable = false)
 	private Calendar dataAdmissao;
@@ -29,6 +34,7 @@ public class Professor extends Pessoa {
 	@Temporal(TemporalType.DATE)
 	private Calendar dataDemissao;
 
+	@NotNull
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "idDisciplina")
 	private Disciplina disciplina = new Disciplina();
