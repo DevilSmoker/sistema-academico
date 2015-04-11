@@ -1,0 +1,7 @@
+*, html{
+	font-family: Arial, Verdana, sans-serif;
+}
+
+.ui-widget, .ui-widget .ui-widget {
+	font-size: 90% !important;
+}

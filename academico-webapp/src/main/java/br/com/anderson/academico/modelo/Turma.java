@@ -19,6 +19,7 @@ public class Turma implements Serializable {
 	@Id
 	@GeneratedValue
 	private Long id;
+	private String nome;
 	private String descricao;
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "turma", cascade = CascadeType.ALL)
@@ -66,6 +67,22 @@ public class Turma implements Serializable {
 
 	public void setAula(List<Aula> aula) {
 		this.aulas = aula;
+	}
+
+	public String getNome() {
+		return nome;
+	}
+
+	public void setNome(String nome) {
+		this.nome = nome;
+	}
+
+	public List<Aula> getAulas() {
+		return aulas;
+	}
+
+	public void setAulas(List<Aula> aulas) {
+		this.aulas = aulas;
 	}
 
 	@Override

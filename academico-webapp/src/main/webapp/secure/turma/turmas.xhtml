@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	  xmlns:h="http://xmlns.jcp.org/jsf/html"
+	  xmlns:f="http://xmlns.jcp.org/jsf/core"
+	  xmlns:p="http://primefaces.org/ui">
+<h:head>
+	<meta charset="UTF-8" />
+	<title>Turmas</title>
+</h:head>
+<h:body>
+	<h:outputStylesheet library="css" name="default.css" />
+	
+	<h1>Gestão de Turmas</h1>
+	
+	<h:form>
+		<p:button value="Nova Turma" outcome="nova-turma" icon="ui-icon-plusthick" />
+		<p:button value="Início" outcome="/secure/index" icon="ui-icon-home" />
+		<p:dataTable var="turma" value="#{turmaController.turmas}">
+			<p:column headerText="Nome">
+				<h:outputText value="#{turma.nome}" />
+			</p:column>
+			
+			<p:column headerText="Descrição">
+				<h:outputText value="#{turma.descricao}" />
+			</p:column>
+			
+			<p:column headerText="Alunos">
+				<h:outputText value="..." />
+			</p:column>
+			
+			<p:column headerText="Aulas">
+				<h:outputText value="..." />
+			</p:column>
+			
+			<p:column headerText="Opções">
+				<p:commandButton action="#{turmaController.deletar}" value="Excluir" process="@this" update="@form" icon="ui-icon-trash">
+					<p:confirm header="Excluir turma" message="Tem certeza?" icon="ui-icon-alert" />
+					<f:setPropertyActionListener target="#{turmaController.turma}" value="#{turma}" />
+				</p:commandButton>
+				
+				<p:commandButton action="alterar-turma" value="Alterar" process="@this" update="@form" icon="ui-icon-pencil" >
+					<f:setPropertyActionListener target="#{turmaController.turma}" value="#{turma}" />
+				</p:commandButton>
+			</p:column>
+		</p:dataTable>
+	</h:form>
+	
+	<p:confirmDialog global="true">
+		<p:commandButton value="Sim" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+		<p:commandButton value="Não" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+	</p:confirmDialog>
+</h:body>
+</html>

@@ -32,11 +32,11 @@ public class Aula implements Serializable {
 	@Column(nullable = false)
 	private Calendar horario;
 
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "idTurma")
 	private Turma turma = new Turma();
 
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "idProfessor")
 	private Professor professor = new Professor();
 

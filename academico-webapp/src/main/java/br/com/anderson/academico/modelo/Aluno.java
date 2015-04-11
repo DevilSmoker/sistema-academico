@@ -22,7 +22,7 @@ public class Aluno extends Pessoa {
 	@Column(nullable = false)
 	private Calendar dataMatricula;
 
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "idTurma")
 	private Turma turma = new Turma();
 
@@ -30,14 +30,10 @@ public class Aluno extends Pessoa {
 		super();
 	}
 
-	public Aluno(String nome, String email, String telefone, String cpf,
-			String sexo, String endereco, String cidade, String estado,
-			String nacionalidade, Calendar dataNascimento, String matricula,
-			Calendar dataMatricula, Turma turma) {
-		super(nome, email, telefone, cpf, sexo, endereco, cidade, estado,
-				nacionalidade, dataNascimento);
-		this.matricula = matricula;
-		this.dataMatricula = dataMatricula;
+	public Aluno(String nome, String email, String cpf, String sexo,
+			String endereco, String cidade, String estado,
+			Calendar dataNascimento, Turma turma) {
+		super(nome, email, cpf, sexo, endereco, cidade, estado, dataNascimento);
 		this.turma = turma;
 	}
 

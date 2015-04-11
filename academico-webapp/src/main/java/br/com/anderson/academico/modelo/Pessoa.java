@@ -28,9 +28,6 @@ public abstract class Pessoa implements Serializable {
 	@Column(length = 60, nullable = false, unique = true)
 	private String email;
 
-	@Column(length = 12)
-	private String telefone;
-
 	@Column(length = 11, nullable = false, unique = true)
 	private String cpf;
 
@@ -46,9 +43,6 @@ public abstract class Pessoa implements Serializable {
 	@Column(nullable = false)
 	private String estado;
 
-	@Column(nullable = false)
-	private String nacionalidade;
-
 	@Temporal(TemporalType.DATE)
 	@Column(nullable = false)
 	private Calendar dataNascimento;
@@ -56,19 +50,17 @@ public abstract class Pessoa implements Serializable {
 	public Pessoa() {
 	}
 
-	public Pessoa(String nome, String email, String telefone, String cpf,
-			String sexo, String endereco, String cidade, String estado,
-			String nacionalidade, Calendar dataNascimento) {
+	public Pessoa(String nome, String email, String cpf, String sexo,
+			String endereco, String cidade, String estado,
+			Calendar dataNascimento) {
 		super();
 		this.nome = nome;
 		this.email = email;
-		this.telefone = telefone;
 		this.cpf = cpf;
 		this.sexo = sexo;
 		this.endereco = endereco;
 		this.cidade = cidade;
 		this.estado = estado;
-		this.nacionalidade = nacionalidade;
 		this.dataNascimento = dataNascimento;
 	}
 
@@ -94,14 +86,6 @@ public abstract class Pessoa implements Serializable {
 
 	public void setEmail(String email) {
 		this.email = email;
-	}
-
-	public String getTelefone() {
-		return telefone;
-	}
-
-	public void setTelefone(String telefone) {
-		this.telefone = telefone;
 	}
 
 	public String getCpf() {
@@ -142,14 +126,6 @@ public abstract class Pessoa implements Serializable {
 
 	public void setEstado(String estado) {
 		this.estado = estado;
-	}
-
-	public String getNacionalidade() {
-		return nacionalidade;
-	}
-
-	public void setNacionalidade(String nacionalidade) {
-		this.nacionalidade = nacionalidade;
 	}
 
 	public Calendar getDataNascimento() {

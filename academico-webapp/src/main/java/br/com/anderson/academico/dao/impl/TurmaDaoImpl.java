@@ -51,6 +51,7 @@ public class TurmaDaoImpl implements TurmaDao {
 			manager.getTransaction().begin();
 			objeto = manager.merge(objeto);
 			manager.remove(objeto);
+			manager.flush();
 			manager.getTransaction().commit();
 		} catch (Exception e) {
 			e.printStackTrace();

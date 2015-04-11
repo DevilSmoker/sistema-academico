@@ -29,7 +29,7 @@ public class Professor extends Pessoa {
 	@Temporal(TemporalType.DATE)
 	private Calendar dataDemissao;
 
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "idDisciplina")
 	private Disciplina disciplina = new Disciplina();
 
@@ -40,19 +40,20 @@ public class Professor extends Pessoa {
 		super();
 	}
 
-	public String getRegistro() {
-		return registro;
-	}
-
-	public Professor(String nome, String email, String telefone, String cpf,
-			String sexo, String endereco, String cidade, String estado,
-			String nacionalidade, Calendar dataNascimento, String registro,
-			Calendar dataAdmissao, Disciplina disciplina) {
-		super(nome, email, telefone, cpf, sexo, endereco, cidade, estado,
-				nacionalidade, dataNascimento);
+	public Professor(String nome, String email, String cpf, String sexo,
+			String endereco, String cidade, String estado,
+			Calendar dataNascimento, String registro, Calendar dataAdmissao,
+			Calendar dataDemissao, Disciplina disciplina, List<Aula> aulas) {
+		super(nome, email, cpf, sexo, endereco, cidade, estado, dataNascimento);
 		this.registro = registro;
 		this.dataAdmissao = dataAdmissao;
+		this.dataDemissao = dataDemissao;
 		this.disciplina = disciplina;
+		this.aulas = aulas;
+	}
+
+	public String getRegistro() {
+		return registro;
 	}
 
 	public void setRegistro(String registro) {
