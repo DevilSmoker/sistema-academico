@@ -1,28 +1,32 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml"
+<ui:composition template="/WEB-INF/templates/layout.xhtml" 
+	  xmlns="http://www.w3.org/1999/xhtml"
 	  xmlns:h="http://xmlns.jcp.org/jsf/html"
 	  xmlns:f="http://xmlns.jcp.org/jsf/core"
+	  xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
 	  xmlns:p="http://primefaces.org/ui">
-<h:head>
-	<meta charset="UTF-8" />
-	<title>Nova Turma</title>
-</h:head>
-<h:body>
-	<h:outputStylesheet library="css" name="default.css" />
 	
-	<h1>Nova Turma</h1>
+	<ui:define name="titulo">Nova Turma</ui:define>
 	
-	<h:form>
-		<h:panelGrid id="painel" columns="2">
-			<p:outputLabel for="nome" value="Nome: "  />
-			<p:inputText id="nome" value="#{turmaController.turma.nome}" size="60" />
-			
-			<p:outputLabel for="descricao" value="Descrição: " />
-			<p:inputText id="descricao" value="#{turmaController.turma.descricao}" size="100" />
-			
-			<p:commandButton action="#{turmaController.adicionar}" value="Salvar" process="painel" update="@form" icon="ui-icon-disk" />
-			<p:button value="Cancelar" outcome="turmas" icon="ui-icon-cancel" />
-		</h:panelGrid>
-	</h:form>
-</h:body>
-</html>
+	<ui:define name="corpo">
+		<h:form>
+			<p:panel header="Nova Turma">
+				<f:metadata>
+					<f:viewAction action="#{turmaController.prepararNovo}" />
+				</f:metadata>
+				
+				<h:panelGrid id="painel" columns="2">
+					<p:outputLabel for="nome" value="Nome: "  />
+					<p:inputText id="nome" value="#{turmaController.turma.nome}" size="60" />
+					
+					<p:outputLabel for="descricao" value="Descrição: " />
+					<p:inputText id="descricao" value="#{turmaController.turma.descricao}" size="100" />
+					
+					<p:commandButton action="#{turmaController.adicionar}" value="Salvar" process="painel" update="@form" icon="ui-icon-disk" />
+					<p:button value="Cancelar" outcome="turmas" icon="ui-icon-cancel" />
+				</h:panelGrid>
+				<p:messages autoUpdate="true" />
+			</p:panel>
+		</h:form>	
+	</ui:define>
+</ui:composition>

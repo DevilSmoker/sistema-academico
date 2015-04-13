@@ -4,13 +4,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.RequestScoped;
+import javax.faces.bean.SessionScoped;
 
 import br.com.anderson.academico.dao.impl.TurmaDaoImpl;
 import br.com.anderson.academico.modelo.Turma;
 
 @ManagedBean
-@RequestScoped
+@SessionScoped
 public class TurmaController {
 
 	private Turma turma;
@@ -21,6 +21,10 @@ public class TurmaController {
 		turmas = new ArrayList<Turma>();
 	}
 	
+	public void prepararNovo() {
+		turma = new Turma();
+	}
+	
 	public String adicionar(){
 		TurmaDaoImpl dao = new TurmaDaoImpl();
 		dao.save(turma);
@@ -29,6 +33,7 @@ public class TurmaController {
 	
 	public String alterar(){
 		TurmaDaoImpl dao = new TurmaDaoImpl();
+		System.out.println(turma.getId());
 		dao.update(turma);
 		return "turmas";
 	}
