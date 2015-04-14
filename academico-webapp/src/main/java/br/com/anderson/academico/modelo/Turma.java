@@ -21,14 +21,14 @@ public class Turma implements Serializable {
 	@Id
 	@GeneratedValue
 	private Long id;
-	
+
 	@NotEmpty
 	private String nome;
-	
+
 	@NotEmpty
 	private String descricao;
 
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "turma", cascade = CascadeType.ALL)
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "turma")
 	private List<Aluno> alunos = new ArrayList<Aluno>();
 
 	@OneToMany(mappedBy = "turma", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
@@ -38,8 +38,9 @@ public class Turma implements Serializable {
 
 	}
 
-	public Turma(String descricao) {
+	public Turma(String nome, String descricao) {
 		super();
+		this.nome = nome;
 		this.descricao = descricao;
 	}
 

@@ -43,7 +43,6 @@ public class TurmaConverter implements Converter{
 			try {
 				return retorno.getId().toString();
 			} catch (Exception e) {
-				e.printStackTrace();
 				return null;
 			}
 		} else {

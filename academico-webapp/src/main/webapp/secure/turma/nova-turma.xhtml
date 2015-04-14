@@ -22,7 +22,7 @@
 					<p:outputLabel for="descricao" value="Descrição: " />
 					<p:inputText id="descricao" value="#{turmaController.turma.descricao}" size="100" />
 					
-					<p:commandButton action="#{turmaController.adicionar}" value="Salvar" process="painel" update="@form" icon="ui-icon-disk" />
+					<p:commandButton action="#{turmaController.adicionar}" value="Salvar" process="painel" update="@all" icon="ui-icon-disk" />
 					<p:button value="Cancelar" outcome="turmas" icon="ui-icon-cancel" />
 				</h:panelGrid>
 				<p:messages autoUpdate="true" />

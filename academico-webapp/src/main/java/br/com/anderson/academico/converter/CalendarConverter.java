@@ -9,7 +9,7 @@ import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
 import javax.faces.convert.FacesConverter;
 
-@FacesConverter(forClass = Calendar.class)
+@FacesConverter("CalendarConverter")
 public class CalendarConverter implements Converter {
 
 	@Override
@@ -43,9 +43,8 @@ public class CalendarConverter implements Converter {
 
 			return retorno;
 		} catch (Exception e) {
-			e.printStackTrace();
+			return null;
 		}
-		return null;
 	}
 
 }

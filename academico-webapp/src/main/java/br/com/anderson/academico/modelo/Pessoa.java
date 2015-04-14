@@ -39,11 +39,11 @@ public abstract class Pessoa implements Serializable {
 
 	@NotEmpty
 	@CPF
-	@Column(length = 11, nullable = false, unique = true)
+	@Column(length = 14, nullable = false, unique = true)
 	private String cpf;
 
 	@NotEmpty
-	@Column(length = 10, nullable = false)
+	@Column(length = 11, nullable = false)
 	private String sexo;
 
 	@NotEmpty

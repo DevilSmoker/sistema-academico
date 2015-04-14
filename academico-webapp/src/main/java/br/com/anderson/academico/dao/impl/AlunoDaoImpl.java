@@ -1,5 +1,6 @@
 package br.com.anderson.academico.dao.impl;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -74,6 +75,19 @@ public class AlunoDaoImpl implements AlunoDao {
 		List<Aluno> alunos = query.getResultList();
 		manager.close();
 		return alunos;
+	}
+	
+	public List<Integer> getMatriculas() {
+		TypedQuery<Aluno> query = manager.createQuery("from Aluno", Aluno.class);
+		List<Aluno> alunos = query.getResultList();
+		manager.close();
+		
+		List<Integer> matriculas = new ArrayList<Integer>();
+		for (Aluno aluno : alunos) {
+			matriculas.add(Integer.parseInt(aluno.getMatricula()));
+		}
+		
+		return matriculas;
 	}
 
 }

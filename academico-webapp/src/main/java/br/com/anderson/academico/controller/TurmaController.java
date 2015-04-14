@@ -3,6 +3,7 @@ package br.com.anderson.academico.controller;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 
@@ -16,9 +17,20 @@ public class TurmaController {
 	private Turma turma;
 	private List<Turma> turmas;
 	
+	@PostConstruct
+	public void construct() {
+		TurmaDaoImpl dao = new TurmaDaoImpl();
+		turmas = dao.list();
+	}
+	
 	public TurmaController() {
 		turma = new Turma();
 		turmas = new ArrayList<Turma>();
+	}
+	
+	public void recarregar() {
+		TurmaDaoImpl dao = new TurmaDaoImpl();
+		turmas = dao.list();
 	}
 	
 	public void prepararNovo() {
@@ -33,7 +45,6 @@ public class TurmaController {
 	
 	public String alterar(){
 		TurmaDaoImpl dao = new TurmaDaoImpl();
-		System.out.println(turma.getId());
 		dao.update(turma);
 		return "turmas";
 	}
@@ -52,8 +63,7 @@ public class TurmaController {
 	}
 
 	public List<Turma> getTurmas() {
-		TurmaDaoImpl dao = new TurmaDaoImpl();
-		turmas = dao.list();
+		recarregar();
 		return turmas;
 	}
 

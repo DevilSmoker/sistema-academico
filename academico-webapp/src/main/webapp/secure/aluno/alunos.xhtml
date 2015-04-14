@@ -1,23 +1,44 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml"
+<ui:composition template="/WEB-INF/templates/layout.xhtml" 
+	  xmlns="http://www.w3.org/1999/xhtml"
 	  xmlns:h="http://xmlns.jcp.org/jsf/html"
 	  xmlns:f="http://xmlns.jcp.org/jsf/core"
+	  xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
 	  xmlns:p="http://primefaces.org/ui">
-<h:head>
-	<meta charset="UTF-8" />
-	<title>Gestão de Alunos</title>
-</h:head>
-<h:body>
-	<h:outputStylesheet library="css" name="default.css" />
 	
-	<h1>Gestão de Alunos</h1>
+	<ui:define name="titulo">Gestão de Alunos</ui:define>
 	
-	<h:form id="fmr">
-		<p:dataTable var="aluno" value="#{alunoController.alunos}">
-			<p:column headerText="Matrícula">
-				<h:outputText value="#{aluno.matricula}" />
-			</p:column>
-		</p:dataTable>
-	</h:form>
-</h:body>
-</html>
+	<ui:define name="corpo">
+		<h:form>
+			<p:dataTable paginator="true" rows="15" paginatorPosition="bottom" 
+						paginatorTemplate="{CurrentPageReport} {PreviousPageLink} {PageLinks} {NextPageLink}"
+						paginatorAlwaysVisible="false" var="aluno" value="#{alunoController.alunos}">
+				
+				<f:facet name="header">Gestão de Alunos</f:facet>
+				
+				<p:column headerText="Matrícula">
+					<h:outputText value="#{aluno.matricula}" />
+				</p:column>
+				
+				<p:column headerText="Nome" filterBy="#{aluno.nome}">
+					<h:outputText value="#{aluno.nome}" />
+				</p:column>
+				
+				<p:column headerText="Turma" filterBy="#{aluno.turma.nome}">
+					<h:outputText value="#{aluno.turma.nome}" />
+				</p:column>
+				
+				<p:column headerText="Opções">
+					<p:commandButton action="#{alunoController.deletar}" value="Excluir" process="@this" update="@form" icon="ui-icon-trash">
+						<p:confirm header="Excluir aluno" message="Tem certeza?" icon="ui-icon-alert" />
+						<f:setPropertyActionListener target="#{alunoController.aluno}" value="#{aluno}" />
+					</p:commandButton>
+					
+					<p:commandButton action="alterar-aluno" value="Alterar" icon="ui-icon-pencil" >
+						<f:setPropertyActionListener target="#{alunoController.aluno}" value="#{aluno}" />
+					</p:commandButton>
+				</p:column>
+			</p:dataTable>
+		</h:form>
+	</ui:define>
+</ui:composition>

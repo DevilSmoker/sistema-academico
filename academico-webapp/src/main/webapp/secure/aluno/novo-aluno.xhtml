@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<ui:composition template="/WEB-INF/templates/layout.xhtml" 
+	  xmlns="http://www.w3.org/1999/xhtml"
+	  xmlns:h="http://xmlns.jcp.org/jsf/html"
+	  xmlns:f="http://xmlns.jcp.org/jsf/core"
+	  xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	  xmlns:p="http://primefaces.org/ui">
+	
+	<ui:define name="titulo">Novo Aluno</ui:define>
+	
+	<ui:define name="corpo">
+		<h:form>
+			<p:panel header="Novo Aluno">
+				<f:metadata>
+					<f:viewAction action="#{alunoController.prepararNovo}" />
+				</f:metadata>
+				
+				<h:panelGrid id="painel" columns="2">
+					<p:outputLabel for="nome" value="Nome: " />
+					<p:inputText id="nome" size="60" value="#{alunoController.aluno.nome}" />
+					
+					<p:outputLabel for="sel-turma" value="Turma: " />
+					<p:selectOneMenu id="sel-turma" value="#{alunoController.aluno.turma}" label="Turma">
+						<f:selectItem itemLabel="Selecione" noSelectionOption="true" />
+						<f:selectItems value="#{turmaController.turmas}" var="turma" itemLabel="#{turma.nome}" />
+					</p:selectOneMenu>
+					
+					<p:outputLabel for="sexo" value="Sexo: " />
+					<p:selectOneButton id="sexo" value="#{alunoController.aluno.sexo}">
+						<f:selectItem itemLabel="Masculino" itemValue="Masculino" />
+						<f:selectItem itemLabel="Feminino" itemValue="Feminino" />
+					</p:selectOneButton>
+					
+					<p:outputLabel for="cpf" value="CPF: " />
+					<p:inputMask id="cpf" mask="999.999.999-99" value="#{alunoController.aluno.cpf}" />
+					
+					<p:outputLabel for="dataNasc" value="Data de Nascimento: " />
+					<p:calendar id="dataNasc" converter="CalendarConverter" size="10" pattern="dd/MM/yyyy" mask="99/99/9999" value="#{alunoController.aluno.dataNascimento}" />
+					
+					<p:outputLabel for="email" value="E-mail: " />
+					<p:inputText id="email" size="60" value="#{alunoController.aluno.email}" />
+					
+					<p:outputLabel for="endereco" value="Endereço: " />
+					<p:inputText id="endereco" size="100" value="#{alunoController.aluno.endereco}" />
+					
+					<p:outputLabel for="cidade" value="Cidade: " />
+					<p:inputText id="cidade" size="40" value="#{alunoController.aluno.cidade}" />
+					
+					<p:outputLabel for="estado" value="Estado: " />
+					<p:inputText id="estado" size="40" value="#{alunoController.aluno.estado}" />
+					
+					<p:commandButton action="#{alunoController.adicionar}" value="Salvar" process="painel" update="@form" icon="ui-icon-disk" />
+					<p:button value="Cancelar" outcome="alunos" icon="ui-icon-cancel" />
+				</h:panelGrid>
+				<p:messages autoUpdate="true" />
+			</p:panel>
+		</h:form>
+	</ui:define>
+</ui:composition>
