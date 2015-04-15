@@ -6,20 +6,35 @@
 	  xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
 	  xmlns:p="http://primefaces.org/ui">
 	
-	<ui:define name="titulo">Alterar Turma</ui:define>
+	<ui:define name="titulo">Alterar Aula</ui:define>
 	
 	<ui:define name="corpo">
 		<h:form>
-			<p:panel header="Alterar Turma">
+			<p:panel header="Alterar Aula">
 				<h:panelGrid id="painel" columns="2">		
-					<p:outputLabel for="nome" value="Nome: "  />
-					<p:inputText id="nome" value="#{turmaController.turma.nome}" size="60" />
+					<p:outputLabel for="sel-turma" value="Turma: " />
+					<p:selectOneMenu id="sel-turma" value="#{aulaController.aula.turma}" label="Turma">
+						<f:selectItem itemLabel="Selecione" noSelectionOption="true" />
+						<f:selectItems value="#{turmaController.turmas}" var="turma" itemLabel="#{turma.nome}" />
+					</p:selectOneMenu>
 					
-					<p:outputLabel for="descricao" value="Descrição: " />
-					<p:inputText id="descricao" value="#{turmaController.turma.descricao}" size="100" />
+					<p:outputLabel for="professor" value="Professor | Disciplina: " />
+					<p:selectOneMenu id="professor" value="#{aulaController.aula.professor}">
+						<f:selectItem itemLabel="Selecione" noSelectionOption="true" />
+						<f:selectItems value="#{professorController.professores}" var="prof" itemLabel="#{prof.nome} | #{prof.disciplina.nome}" />
+					</p:selectOneMenu>
 					
-					<p:commandButton action="#{turmaController.alterar}" value="Salvar" process="painel" update="@all" icon="ui-icon-disk" />
-					<p:button value="Cancelar" outcome="turmas" icon="ui-icon-cancel" />
+					<p:outputLabel for="dia" value="Dia da Semana: "  />
+					<p:selectOneMenu id="dia" value="#{aulaController.aula.diaDaSemana}" label="Dia da Semana">
+						<f:selectItem itemLabel="Selecione" noSelectionOption="true" />
+						<f:selectItems value="#{aulaController.diasDaSemana}" var="dia" itemValue="#{dia}" />
+					</p:selectOneMenu>
+					
+					<p:outputLabel for="hora" value="Horário: " />
+					<p:inputMask mask="99:99" id="hora" value="#{aulaController.aula.horario}" title="Horário" converter="HoraConverter"/>
+					
+					<p:commandButton action="#{aulaController.alterar}" value="Salvar" process="painel" update="@all" icon="ui-icon-disk" />
+					<p:button value="Cancelar" outcome="aulas" icon="ui-icon-cancel" />
 				</h:panelGrid>		
 			</p:panel>
 		</h:form>
