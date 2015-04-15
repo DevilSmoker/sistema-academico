@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -39,7 +38,7 @@ public class Professor extends Pessoa {
 	@JoinColumn(name = "idDisciplina")
 	private Disciplina disciplina = new Disciplina();
 
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "professor", cascade = CascadeType.ALL)
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "professor")
 	private List<Aula> aulas = new ArrayList<Aula>();
 
 	public Professor() {

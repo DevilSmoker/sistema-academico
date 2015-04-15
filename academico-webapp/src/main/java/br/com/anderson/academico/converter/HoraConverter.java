@@ -9,14 +9,14 @@ import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
 import javax.faces.convert.FacesConverter;
 
-@FacesConverter("CalendarConverter")
-public class CalendarConverter implements Converter {
+@FacesConverter("HoraConverter")
+public class HoraConverter implements Converter {
 
 	@Override
 	public Object getAsObject(FacesContext context, UIComponent component,
 			String value) {
 		Calendar retorno = Calendar.getInstance();
-		SimpleDateFormat fmt = new SimpleDateFormat("dd/MM/yyyy");
+		SimpleDateFormat fmt = new SimpleDateFormat("HH:mm");
 
 		if (value.equals("")) {
 			return null;
@@ -36,7 +36,7 @@ public class CalendarConverter implements Converter {
 	public String getAsString(FacesContext context, UIComponent component,
 			Object value) {
 		Calendar data = (Calendar) value;
-		SimpleDateFormat fmt = new SimpleDateFormat("dd/MM/yyyy");
+		SimpleDateFormat fmt = new SimpleDateFormat("HH:mm");
 
 		try {
 			String retorno = fmt.format(data.getTime());

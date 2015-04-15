@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<ui:composition template="/WEB-INF/templates/layout.xhtml" 
+	  xmlns="http://www.w3.org/1999/xhtml"
+	  xmlns:h="http://xmlns.jcp.org/jsf/html"
+	  xmlns:f="http://xmlns.jcp.org/jsf/core"
+	  xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	  xmlns:p="http://primefaces.org/ui">
+	
+	<ui:define name="titulo">Gestão de Professores</ui:define>
+	
+	<ui:define name="corpo">
+		<h:form id="form">
+			<p:dataTable paginator="true" rows="15" paginatorPosition="bottom" 
+						paginatorTemplate="{CurrentPageReport} {PreviousPageLink} {PageLinks} {NextPageLink}"
+						paginatorAlwaysVisible="false" var="professor" value="#{professorController.professores}">
+				
+				<f:facet name="header">Gestão de Professores</f:facet>
+				
+				<p:column headerText="Registro">
+					<h:outputText value="#{professor.registro}" />
+				</p:column>
+				
+				<p:column headerText="Nome" filterBy="#{professor.nome}">
+					<h:outputText value="#{professor.nome}" />
+				</p:column>
+				
+				<p:column headerText="Disciplina" filterBy="#{professor.disciplina.nome}">
+					<h:outputText value="#{professor.disciplina.nome}" />
+				</p:column>
+				
+				<p:column headerText="Opções">
+					<p:commandButton update=":form:detalhes" oncomplete="PF('detalhes').show()" icon="ui-icon-search" value="Detalhes" title="Detalhes">
+		                <f:setPropertyActionListener value="#{professor}" target="#{professorController.professor}" />
+		            </p:commandButton>
+		            
+					<p:commandButton action="#{professorController.deletar}" process="@this" update="@form" icon="ui-icon-trash" value="Excluir" title="Excluir">
+						<p:confirm header="Excluir professor" message="Tem certeza?" icon="ui-icon-alert" />
+						<f:setPropertyActionListener target="#{professorController.professor}" value="#{professor}" />
+					</p:commandButton>
+					
+					<p:commandButton action="alterar-professor" icon="ui-icon-pencil" value="Alterar" title="Alterar">
+						<f:setPropertyActionListener target="#{professorController.professor}" value="#{professor}" />
+					</p:commandButton>
+				</p:column>
+			</p:dataTable>
+			
+			<p:dialog id="detalhes" header="Detalhes" widgetVar="detalhes" modal="true" closable="true" resizable="false" draggable="false"> 
+				<h:panelGrid columns="2" cellpadding="2">
+					<h:outputText value="Registro: " />
+					<h:outputText value="#{professorController.professor.registro}" />
+					
+					<h:outputText value="Data de Admissão: " />
+					<h:outputText value="#{professorController.professor.dataAdmissao}" converter="DataConverter" />
+					
+					<h:outputText value="Nome: " />
+					<h:outputText value="#{professorController.professor.nome}" />
+					
+					<h:outputText value="Disciplina: " />
+					<h:outputText value="#{professorController.professor.disciplina.nome}" />
+					
+					<h:outputText value="CPF: " />
+					<h:outputText value="#{professorController.professor.cpf}" />
+					
+					<h:outputText value="Data de Nascimento: " />
+					<h:outputText value="#{professorController.professor.dataNascimento}" converter="DataConverter" />
+					
+					<h:outputText value="Sexo: " />
+					<h:outputText value="#{professorController.professor.sexo}" />
+					
+					<h:outputText value="E-Mail: " />
+					<h:outputText value="#{professorController.professor.email}" />
+					
+					<h:outputText value="Endereço: " />
+					<h:outputText value="#{professorController.professor.endereco}" />
+					
+					<h:outputText value="Cidade: " />
+					<h:outputText value="#{professorController.professor.cidade}" />
+					
+					<h:outputText value="Estado: " />
+					<h:outputText value="#{professorController.professor.estado}" />
+				</h:panelGrid>
+			</p:dialog>
+		</h:form>
+	</ui:define>
+</ui:composition>

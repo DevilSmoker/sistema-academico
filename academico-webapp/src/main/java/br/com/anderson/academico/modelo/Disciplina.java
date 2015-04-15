@@ -4,7 +4,6 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -25,7 +24,7 @@ public class Disciplina implements Serializable {
 	@NotEmpty
 	private String nome;
 
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "disciplina", cascade = CascadeType.ALL)
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "disciplina")
 	private List<Professor> professores = new ArrayList<Professor>();
 
 	public Disciplina() {

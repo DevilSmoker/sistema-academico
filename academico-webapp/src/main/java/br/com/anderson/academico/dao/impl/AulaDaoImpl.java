@@ -63,17 +63,17 @@ public class AulaDaoImpl implements AulaDao {
 
 	@Override
 	public Aula getById(Long id) {
-		Aula professorTurma = manager.find(Aula.class, id);
+		Aula aula = manager.find(Aula.class, id);
 		manager.close();
-		return professorTurma;
+		return aula;
 	}
 
 	@Override
 	public List<Aula> list() {
-		TypedQuery<Aula> query = manager.createQuery("from ProfessorTurma", Aula.class);
-		List<Aula> professorTurmas = query.getResultList();
+		TypedQuery<Aula> query = manager.createQuery("from Aula", Aula.class);
+		List<Aula> aulas = query.getResultList();
 		manager.close();
-		return professorTurmas;
+		return aulas;
 	}
 	
 }

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<ui:composition template="/WEB-INF/templates/layout.xhtml" 
+	  xmlns="http://www.w3.org/1999/xhtml"
+	  xmlns:h="http://xmlns.jcp.org/jsf/html"
+	  xmlns:f="http://xmlns.jcp.org/jsf/core"
+	  xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	  xmlns:p="http://primefaces.org/ui">
+	
+	<ui:define name="titulo">Alterar Aluno</ui:define>
+	
+	<ui:define name="corpo">
+		<h:outputScript library="js" name="locale-pt_BR.js" />
+		<h:form>
+			<p:panel header="Alterar Aluno">
+				<h:panelGrid id="painel" columns="2">
+					<p:outputLabel for="registro" value="Registro: " />
+					<p:inputText id="registro" value="#{professorController.professor.registro}" />
+					
+					<p:outputLabel for="nome" value="Nome: " />
+					<p:inputText id="nome" size="60" value="#{professorController.professor.nome}" />
+					
+					<p:outputLabel for="sel-disciplina" value="Disciplina: " />
+					<p:selectOneMenu id="sel-disciplina" value="#{professorController.professor.disciplina}" label="Disciplina">
+						<f:selectItem itemLabel="Selecione" noSelectionOption="true" />
+						<f:selectItems value="#{disciplinaController.disciplinas}" var="disciplina" itemLabel="#{disciplina.nome}" />
+					</p:selectOneMenu>
+					
+					<p:outputLabel for="sexo" value="Sexo: " />
+					<p:selectOneButton id="sexo" value="#{professorController.professor.sexo}">
+						<f:selectItem itemLabel="Masculino" itemValue="Masculino" />
+						<f:selectItem itemLabel="Feminino" itemValue="Feminino" />
+					</p:selectOneButton>
+					
+					<p:outputLabel for="cpf" value="CPF: " />
+					<p:inputMask id="cpf" mask="999.999.999-99" value="#{professorController.professor.cpf}" />
+					
+					<p:outputLabel for="dataNasc" value="Data de Nascimento: " />
+					<p:calendar id="dataNasc" converter="DataConverter" locale="pt_BR" size="10" pattern="dd/MM/yyyy" mask="99/99/9999" value="#{professorController.professor.dataNascimento}" />
+					
+					<p:outputLabel for="email" value="E-mail: " />
+					<p:inputText id="email" size="60" value="#{professorController.professor.email}" />
+					
+					<p:outputLabel for="endereco" value="Endereço: " />
+					<p:inputText id="endereco" size="100" value="#{professorController.professor.endereco}" />
+					
+					<p:outputLabel for="cidade" value="Cidade: " />
+					<p:inputText id="cidade" size="40" value="#{professorController.professor.cidade}" />
+					
+					<p:outputLabel for="estado" value="Estado: " />
+					<p:inputText id="estado" size="40" value="#{professorController.professor.estado}" />
+					
+					<p:commandButton action="#{professorController.alterar}" value="Salvar" process="painel" update="@all" icon="ui-icon-disk" />
+					<p:button value="Cancelar" outcome="professores" icon="ui-icon-cancel" />
+				</h:panelGrid>
+				<p:messages autoUpdate="true" />
+			</p:panel>
+		</h:form>
+	</ui:define>
+</ui:composition>

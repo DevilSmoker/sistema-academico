@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<ui:composition template="/WEB-INF/templates/layout.xhtml" 
+	  xmlns="http://www.w3.org/1999/xhtml"
+	  xmlns:h="http://xmlns.jcp.org/jsf/html"
+	  xmlns:f="http://xmlns.jcp.org/jsf/core"
+	  xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	  xmlns:p="http://primefaces.org/ui">
+
+	<ui:define name="titulo">Gestão de Disciplinas</ui:define>
+	
+	<ui:define name="corpo">
+		<h:form>		
+			<p:dataTable paginator="true" rows="15" paginatorPosition="bottom" 
+						paginatorTemplate="{CurrentPageReport} {PreviousPageLink} {PageLinks} {NextPageLink}"
+						paginatorAlwaysVisible="false" var="disciplina" value="#{disciplinaController.disciplinas}">		
+				<f:facet name="header">Gestão de Disciplinas</f:facet>
+				
+				<p:column headerText="Nome">
+					<h:outputText value="#{disciplina.nome}" />
+				</p:column>
+				
+				<p:column headerText="Professores">
+					<h:outputText value="..." />
+				</p:column>
+				
+				<p:column headerText="Opções">
+					<p:commandButton action="#{disciplinaController.deletar}" value="Excluir" process="@this" update="@form" icon="ui-icon-trash">
+						<p:confirm header="Excluir disciplina" message="Tem certeza?" icon="ui-icon-alert" />
+						<f:setPropertyActionListener target="#{disciplinaController.disciplina}" value="#{disciplina}" />
+					</p:commandButton>
+					
+					<p:commandButton action="alterar-disciplina" value="Alterar" icon="ui-icon-pencil" >
+						<f:setPropertyActionListener target="#{disciplinaController.disciplina}" value="#{disciplina}" />
+					</p:commandButton>
+				</p:column>
+			</p:dataTable>
+		</h:form>
+	</ui:define>
+</ui:composition>

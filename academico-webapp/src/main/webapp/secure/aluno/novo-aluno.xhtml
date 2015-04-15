@@ -9,6 +9,7 @@
 	<ui:define name="titulo">Novo Aluno</ui:define>
 	
 	<ui:define name="corpo">
+		<h:outputScript library="js" name="locale-pt_BR.js" />
 		<h:form>
 			<p:panel header="Novo Aluno">
 				<f:metadata>
@@ -35,7 +36,7 @@
 					<p:inputMask id="cpf" mask="999.999.999-99" value="#{alunoController.aluno.cpf}" />
 					
 					<p:outputLabel for="dataNasc" value="Data de Nascimento: " />
-					<p:calendar id="dataNasc" converter="CalendarConverter" size="10" pattern="dd/MM/yyyy" mask="99/99/9999" value="#{alunoController.aluno.dataNascimento}" />
+					<p:calendar id="dataNasc" converter="DataConverter" locale="pt_BR" size="10" pattern="dd/MM/yyyy" mask="99/99/9999" value="#{alunoController.aluno.dataNascimento}" />
 					
 					<p:outputLabel for="email" value="E-mail: " />
 					<p:inputText id="email" size="60" value="#{alunoController.aluno.email}" />
