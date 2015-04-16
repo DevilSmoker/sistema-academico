@@ -8,6 +8,8 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 
 import br.com.anderson.academico.dao.impl.TurmaDaoImpl;
+import br.com.anderson.academico.modelo.Aluno;
+import br.com.anderson.academico.modelo.Aula;
 import br.com.anderson.academico.modelo.Turma;
 
 @ManagedBean
@@ -35,6 +37,16 @@ public class TurmaController {
 	
 	public void prepararNovo() {
 		turma = new Turma();
+	}
+	
+	public List<Aluno> getAlunos() {
+		TurmaDaoImpl dao = new TurmaDaoImpl();
+		return dao.getAlunos(turma.getId());
+	}
+	
+	public List<Aula> getAulas() {
+		TurmaDaoImpl dao = new TurmaDaoImpl();
+		return dao.getAulas(turma.getId());
 	}
 	
 	public String adicionar(){

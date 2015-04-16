@@ -9,7 +9,7 @@
 	<ui:define name="titulo">Gestão de Disciplinas</ui:define>
 	
 	<ui:define name="corpo">
-		<h:form>		
+		<h:form id="form">		
 			<p:dataTable paginator="true" rows="15" paginatorPosition="bottom" 
 						paginatorTemplate="{CurrentPageReport} {PreviousPageLink} {PageLinks} {NextPageLink}"
 						paginatorAlwaysVisible="false" var="disciplina" value="#{disciplinaController.disciplinas}">		
@@ -20,7 +20,9 @@
 				</p:column>
 				
 				<p:column headerText="Professores">
-					<h:outputText value="..." />
+					<p:commandButton update=":form:professores" oncomplete="PF('professores').show()" icon="ui-icon-search" value="Lista de Professores" title="Professores">
+						<f:setPropertyActionListener target="#{disciplinaController.disciplina}" value="#{disciplina}" />
+					</p:commandButton>
 				</p:column>
 				
 				<p:column headerText="Opções">
@@ -34,6 +36,12 @@
 					</p:commandButton>
 				</p:column>
 			</p:dataTable>
+			
+			<p:dialog id="professores" header="Professores" widgetVar="professores" modal="true" closable="true" resizable="false" draggable="false">
+				<p:dataList value="#{disciplinaController.professores}" var="professor" type="ordered">
+					<h:outputText value="#{professor.nome}" />
+				</p:dataList>
+			</p:dialog>
 		</h:form>
 	</ui:define>
 </ui:composition>

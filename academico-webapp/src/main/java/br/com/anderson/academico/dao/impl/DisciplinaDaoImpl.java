@@ -7,6 +7,7 @@ import javax.persistence.TypedQuery;
 
 import br.com.anderson.academico.dao.DisciplinaDao;
 import br.com.anderson.academico.modelo.Disciplina;
+import br.com.anderson.academico.modelo.Professor;
 import br.com.anderson.academico.util.JpaUtil;
 
 public class DisciplinaDaoImpl implements DisciplinaDao {
@@ -74,6 +75,14 @@ public class DisciplinaDaoImpl implements DisciplinaDao {
 		List<Disciplina> disciplinas = query.getResultList();
 		manager.close();
 		return disciplinas;
+	}
+	
+	public List<Professor> getProfessores(Long id) {
+		TypedQuery<Professor> query = manager.createQuery("SELECT P FROM Disciplina D, Professor P WHERE D.id = P.disciplina AND D.id = :id", Professor.class);
+		query.setParameter("id", id);
+		List<Professor> professores = query.getResultList();
+		manager.close();
+		return professores;
 	}
 
 }

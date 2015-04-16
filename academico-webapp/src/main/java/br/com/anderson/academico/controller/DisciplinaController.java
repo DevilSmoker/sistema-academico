@@ -9,6 +9,7 @@ import javax.faces.bean.SessionScoped;
 
 import br.com.anderson.academico.dao.impl.DisciplinaDaoImpl;
 import br.com.anderson.academico.modelo.Disciplina;
+import br.com.anderson.academico.modelo.Professor;
 
 @ManagedBean
 @SessionScoped
@@ -35,6 +36,11 @@ public class DisciplinaController {
 
 	public void prepararNovo() {
 		disciplina = new Disciplina();
+	}
+	
+	public List<Professor> getProfessores() {
+		DisciplinaDaoImpl dao = new DisciplinaDaoImpl();
+		return dao.getProfessores(disciplina.getId());
 	}
 
 	public String adicionar() {

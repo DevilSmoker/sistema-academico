@@ -9,7 +9,7 @@
 	<ui:define name="titulo">Gestão de Turmas</ui:define>
 	
 	<ui:define name="corpo">
-		<h:form>		
+		<h:form id="form">		
 			<p:dataTable paginator="true" rows="15" paginatorPosition="bottom" 
 						paginatorTemplate="{CurrentPageReport} {PreviousPageLink} {PageLinks} {NextPageLink}"
 						paginatorAlwaysVisible="false" var="turma" value="#{turmaController.turmas}">		
@@ -24,11 +24,15 @@
 				</p:column>
 				
 				<p:column headerText="Alunos">
-					<h:outputText value="..." />
+					<p:commandButton update=":form:alunos" oncomplete="PF('alunos').show()" icon="ui-icon-search" value="Lista de Alunos" title="Alunos">
+						<f:setPropertyActionListener target="#{turmaController.turma}" value="#{turma}" />
+					</p:commandButton>
 				</p:column>
 				
 				<p:column headerText="Aulas">
-					<h:outputText value="..." />
+					<p:commandButton update=":form:aulas" oncomplete="PF('aulas').show()" icon="ui-icon-search" value="Lista de Aulas" title="Aulas">
+						<f:setPropertyActionListener target="#{turmaController.turma}" value="#{turma}" />
+					</p:commandButton>
 				</p:column>
 				
 				<p:column headerText="Opções">
@@ -42,6 +46,27 @@
 					</p:commandButton>
 				</p:column>
 			</p:dataTable>
+			
+			<p:dialog id="alunos" header="Alunos" widgetVar="alunos" modal="true" closable="true" resizable="false" draggable="false">
+				<p:dataList value="#{turmaController.alunos}" var="aluno" type="ordered">
+					<h:outputText value="#{aluno.nome}" />
+				</p:dataList>
+			</p:dialog>
+			
+			<p:dialog id="aulas" header="Aulas" widgetVar="aulas" modal="true" closable="true" resizable="false" draggable="false">
+				<p:dataList value="#{turmaController.aulas}" var="aula" type="ordered">
+					<h:panelGrid columns="2">
+						<h:outputText value="Dia: " />
+						<h:outputText value="#{aula.diaDaSemana}" />
+						
+						<h:outputText value="Horário: " />
+						<h:outputText value="#{aula.horario}" converter="HoraConverter" />
+						
+						<h:outputText value="Disciplina: " />
+						<h:outputText value="#{aula.professor.disciplina.nome}" />
+					</h:panelGrid>
+				</p:dataList>
+			</p:dialog>
 		</h:form>
 	</ui:define>
 </ui:composition>

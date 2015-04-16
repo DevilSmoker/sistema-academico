@@ -67,14 +67,6 @@ public class Turma implements Serializable {
 		this.alunos = alunos;
 	}
 
-	public List<Aula> getAula() {
-		return aulas;
-	}
-
-	public void setAula(List<Aula> aula) {
-		this.aulas = aula;
-	}
-
 	public String getNome() {
 		return nome;
 	}
